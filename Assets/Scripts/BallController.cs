@@ -7,8 +7,7 @@ public class BallController : MonoBehaviour
     private bool ballActive;
     private Vector3 ballPosition;
     private Vector2 ballInitialForce;
-    public PlayerController PlayerController;
-
+    public GameObject Player;
 
     // Start is called before the first frame update
     void Start()
@@ -38,11 +37,19 @@ public class BallController : MonoBehaviour
             }
         }
 
+        if (ballActive == false && Player != null){
+            // get and use the player position
+            ballPosition.x = Player.transform.position.x;
+             
+            // apply player X position to the ball
+            transform.position = ballPosition;
+        }
+
     }
 
     void OnTriggerEnter2D(Collider2D Bottom)
     {
         Destroy(gameObject);
-        PlayerController.lives -= 1;
+       // PlayerController.lives -= 1;
     }
 }

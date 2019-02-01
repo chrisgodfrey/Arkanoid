@@ -243,6 +243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38133a79dae218744a8dc1f6b7d09198, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerController: {fileID: 550072216}
 --- !u!1 &228167505
 GameObject:
   m_ObjectHideFlags: 0
@@ -750,6 +751,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b57b30895b79b3142bdeb80b419c4dc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lives: 3
   speed: 15
   axis: Horizontal
 --- !u!1 &672372115
