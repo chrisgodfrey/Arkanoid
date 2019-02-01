@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public int lives = 3;
     public float speed = 30;
     public string axis = "Horizontal";
 
