@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Block : MonoBehaviour
 {
- void OnCollisionEnter2D(Collision2D collisionInfo) {
+    void OnCollisionEnter2D(Collision2D collisionInfo)
+    {
         // Destroy the whole Block
         Destroy(gameObject);
+
     }
 }

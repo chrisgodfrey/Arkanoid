@@ -19,10 +19,6 @@ public class Racket : MonoBehaviour
 
     void Update()
     {
-        if (lives == 0)
-        {
-            Debug.Log("you lost all your lives!");
-            Destroy(gameObject);
-        }
+
     }
 }

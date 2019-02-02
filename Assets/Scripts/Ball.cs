@@ -10,9 +10,9 @@ public class Ball : MonoBehaviour
     public Vector3 ballPosition;
     public GameObject vausLife3;
     public GameObject vausLife2;
+    public bool gameOver;
 
-    float hitFactor(Vector2 ballPos, Vector2 racketPos,
-                float racketWidth)
+    float hitFactor(Vector2 ballPos, Vector2 racketPos, float racketWidth)
     {
         // ascii art:
         //
@@ -26,58 +26,74 @@ public class Ball : MonoBehaviour
     void Start()
     {
         ballActive = false;
+        gameOver = false;
 
         // get and use the player's Y position
         ballPosition.y = playerObject.transform.position.y + 10;
 
         // apply player Y position to the ball
         GetComponent<Rigidbody2D>().transform.position = ballPosition;
+
     }
 
     void Update()
     {
-        if (Input.GetKeyDown("space"))
+        if (gameOver == false)
         {
-            if (ballActive == false)
+            if (Input.GetKeyDown("space"))
             {
-                // Set starting direction
-                Vector2 dir = new Vector2(50, 100).normalized;
+                if (ballActive == false)
+                {
+                    // Set starting direction
+                    Vector2 dir = new Vector2(50, 100).normalized;
 
-                // Set Velocity with dir * speed
-                GetComponent<Rigidbody2D>().velocity = dir * speed;
+                    // Set Velocity with dir * speed
+                    GetComponent<Rigidbody2D>().velocity = dir * speed;
 
-                // mark the ball as Active
-                ballActive = true;
+                    // mark the ball as Active
+                    ballActive = true;
+                }
+            }
+
+            if (ballActive == false && playerObject != null)
+            {
+                // get and use the player position
+                ballPosition.x = playerObject.transform.position.x + 20;
+
+                // apply player X position to the ball
+                GetComponent<Rigidbody2D>().transform.position = ballPosition;
+            }
+
+            if (GetComponent<Rigidbody2D>().transform.position.y < 0 && playerObject.GetComponent<Racket>().lives > 0)
+            {
+                Debug.Log("you lost a life!");
+                ballActive = false;
+                // decrease player lives by 1
+                playerObject.GetComponent<Racket>().lives -= 1;
+                playerObject.GetComponent<Rigidbody2D>().MovePosition(new Vector2 (84,16));
+                Debug.Log("Player Lives = " + playerObject.GetComponent<Racket>().lives);
+                if (playerObject.GetComponent<Racket>().lives == 2)
+                {
+                    vausLife3.SetActive(false);
+                }
+                if (playerObject.GetComponent<Racket>().lives == 1)
+                {
+                    vausLife2.SetActive(false);
+                }
+                if (playerObject.GetComponent<Racket>().lives == 0)
+                {
+                    Debug.Log("you lost all your lives!");
+                    gameOver = true;
+                }
             }
         }
-
-        if (ballActive == false && playerObject != null)
+        else
         {
-            // get and use the player position
-            ballPosition.x = playerObject.transform.position.x + 20;
-
-            // apply player X position to the ball
-            GetComponent<Rigidbody2D>().transform.position = ballPosition;
+            // game over!
+            Destroy(playerObject);
+            Destroy(gameObject);
         }
 
-        if (GetComponent<Rigidbody2D>().transform.position.y < 0 && playerObject.GetComponent<Racket>().lives > 0)
-        {
-            Debug.Log("you lost a life!");
-            ballActive = false;
-            // decrease player lives by 1
-            playerObject.GetComponent<Racket>().lives -= 1;
-            Debug.Log("Player Lives = " + playerObject.GetComponent<Racket>().lives);
-            if (playerObject.GetComponent<Racket>().lives == 2)
-            {
-                vausLife3.SetActive(false);
-            }
-            if (playerObject.GetComponent<Racket>().lives == 1)
-            {
-                vausLife2.SetActive(false);
-            }
-            // TODO: make ship explode
-            // TODO: make new ship float up from bottom
-        }
     }
 
     void OnCollisionEnter2D(Collision2D col)
