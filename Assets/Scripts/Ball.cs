@@ -25,11 +25,10 @@ public class Ball : MonoBehaviour
     {
         ballActive = false;
 
-        // get and use the player position
-        ballPosition.x = playerObject.transform.position.x + 10;
+        // get and use the player's Y position
         ballPosition.y = playerObject.transform.position.y + 10;
 
-        // apply player X position to the ball
+        // apply player Y position to the ball
         GetComponent<Rigidbody2D>().transform.position = ballPosition;
     }
 
@@ -40,7 +39,7 @@ public class Ball : MonoBehaviour
             if (ballActive == false)
             {
                 // Set starting direction
-                Vector2 dir = new Vector2(-200, 100).normalized;
+                Vector2 dir = new Vector2(50, 100).normalized;
 
                 // Set Velocity with dir * speed
                 GetComponent<Rigidbody2D>().velocity = dir * speed;
@@ -53,10 +52,22 @@ public class Ball : MonoBehaviour
         if (ballActive == false && playerObject != null)
         {
             // get and use the player position
-            ballPosition.x = playerObject.transform.position.x;
+            ballPosition.x = playerObject.transform.position.x + 20;
 
             // apply player X position to the ball
             GetComponent<Rigidbody2D>().transform.position = ballPosition;
+        }
+
+        if (GetComponent<Rigidbody2D>().transform.position.y < 0 && playerObject.GetComponent<Racket>().lives > 0)
+        {
+            Debug.Log("you lost a life!");
+            ballActive = false;
+            // decrease player lives by 1
+           playerObject.GetComponent<Racket>().lives -= 1;
+           Debug.Log("Player Lives = " + playerObject.GetComponent<Racket>().lives);
+
+            // TODO: make ship explode
+            // TODO: make new ship float up from bottom
         }
     }
 
