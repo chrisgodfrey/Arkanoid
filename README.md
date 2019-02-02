@@ -1,6 +1,6 @@
 ## Arkanoid
 
-My second game on the path to gamedev greatness! I've made simple Breakout clones before in other engines, seeing the most success in Construct 2, although that version would frequently crash due to the level creating an exponentially increasing number of balls. Funny to watch, but graphical coding wasn't for me in the end.
+My second game on the path to gamedev greatness! I've made simple Breakout clones before in other engines, seeing the most success in Construct 2, although that version would frequently crash due to the level creating an exponentially increasing number of balls. Funny to watch, but drag and drop coding wasn't for me in the end.
 
 ![screenshot](screenshot.png)
 
