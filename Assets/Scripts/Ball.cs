@@ -8,6 +8,8 @@ public class Ball : MonoBehaviour
     public GameObject playerObject;
     public bool ballActive;
     public Vector3 ballPosition;
+    public GameObject vausLife3;
+    public GameObject vausLife2;
 
     float hitFactor(Vector2 ballPos, Vector2 racketPos,
                 float racketWidth)
@@ -63,9 +65,16 @@ public class Ball : MonoBehaviour
             Debug.Log("you lost a life!");
             ballActive = false;
             // decrease player lives by 1
-           playerObject.GetComponent<Racket>().lives -= 1;
-           Debug.Log("Player Lives = " + playerObject.GetComponent<Racket>().lives);
-
+            playerObject.GetComponent<Racket>().lives -= 1;
+            Debug.Log("Player Lives = " + playerObject.GetComponent<Racket>().lives);
+            if (playerObject.GetComponent<Racket>().lives == 2)
+            {
+                vausLife3.SetActive(false);
+            }
+            if (playerObject.GetComponent<Racket>().lives == 1)
+            {
+                vausLife2.SetActive(false);
+            }
             // TODO: make ship explode
             // TODO: make new ship float up from bottom
         }
