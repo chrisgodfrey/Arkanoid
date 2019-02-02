@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
-    // Movement Speed
     public float speed = 100.0f;
+    public GameObject player;
+    public bool ballActive;
 
     float hitFactor(Vector2 ballPos, Vector2 racketPos,
                 float racketWidth)
@@ -21,7 +22,15 @@ public class Ball : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        GetComponent<Rigidbody2D>().velocity = Vector2.up * speed;
+        ballActive = false;
+    }
+
+    void FixedUpdate()
+    {
+        if (ballActive == false && player != null)
+        {
+                    GetComponent<Rigidbody2D>().velocity = Vector2.up * speed;
+        }
     }
 
     void OnCollisionEnter2D(Collision2D col)
