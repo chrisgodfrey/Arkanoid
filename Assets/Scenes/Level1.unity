@@ -2157,10 +2157,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 294495119}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e106609bf4eecf49bd040e0adb9f2f3, type: 3}
+  m_Script: {fileID: 11500000, guid: 0bcbf5ab7125de6458e796b6c30becf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 100
+  playerObject: {fileID: 1180706773}
+  ballActive: 0
+  ballPosition: {x: 0, y: 0, z: 0}
 --- !u!50 &294495123
 Rigidbody2D:
   serializedVersion: 4

@@ -5,8 +5,9 @@ using UnityEngine;
 public class Ball : MonoBehaviour
 {
     public float speed = 100.0f;
-    public GameObject player;
+    public GameObject playerObject;
     public bool ballActive;
+    public Vector3 ballPosition;
 
     float hitFactor(Vector2 ballPos, Vector2 racketPos,
                 float racketWidth)
@@ -23,13 +24,39 @@ public class Ball : MonoBehaviour
     void Start()
     {
         ballActive = false;
+
+        // get and use the player position
+        ballPosition.x = playerObject.transform.position.x + 10;
+        ballPosition.y = playerObject.transform.position.y + 10;
+
+        // apply player X position to the ball
+        GetComponent<Rigidbody2D>().transform.position = ballPosition;
     }
 
-    void FixedUpdate()
+    void Update()
     {
-        if (ballActive == false && player != null)
+        if (Input.GetKeyDown("space"))
         {
-                    GetComponent<Rigidbody2D>().velocity = Vector2.up * speed;
+            if (ballActive == false)
+            {
+                // Set starting direction
+                Vector2 dir = new Vector2(-200, 100).normalized;
+
+                // Set Velocity with dir * speed
+                GetComponent<Rigidbody2D>().velocity = dir * speed;
+
+                // mark the ball as Active
+                ballActive = true;
+            }
+        }
+
+        if (ballActive == false && playerObject != null)
+        {
+            // get and use the player position
+            ballPosition.x = playerObject.transform.position.x;
+
+            // apply player X position to the ball
+            GetComponent<Rigidbody2D>().transform.position = ballPosition;
         }
     }
 
