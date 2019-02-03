@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 63968666625240963}
   - component: {fileID: 63968666625240990}
-  - component: {fileID: 63968666625240989}
   - component: {fileID: 63968666625240988}
   m_Layer: 0
   m_Name: brick_red
@@ -81,18 +80,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &63968666625240989
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 63968666625240962}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab4ab742f12377e4885aeda15f0b28b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &63968666625240988
 BoxCollider2D:
   m_ObjectHideFlags: 0

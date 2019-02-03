@@ -6,6 +6,7 @@ public class Ball : MonoBehaviour
 {
     public float speed = 100.0f;
     public GameObject playerObject;
+    public GameObject gameManager;
     public bool ballActive;
     public Vector3 ballPosition;
     public GameObject vausLife3;
@@ -70,7 +71,7 @@ public class Ball : MonoBehaviour
                 ballActive = false;
                 // decrease player lives by 1
                 playerObject.GetComponent<Racket>().lives -= 1;
-                playerObject.GetComponent<Rigidbody2D>().MovePosition(new Vector2 (84,16));
+                playerObject.GetComponent<Rigidbody2D>().MovePosition(new Vector2(84, 16));
                 Debug.Log("Player Lives = " + playerObject.GetComponent<Racket>().lives);
                 if (playerObject.GetComponent<Racket>().lives == 2)
                 {
@@ -111,6 +112,15 @@ public class Ball : MonoBehaviour
 
             // Set Velocity with dir * speed
             GetComponent<Rigidbody2D>().velocity = dir * speed;
+        }
+
+        // Hit a red brick?
+        if (col.gameObject.tag == "red_brick")
+        {
+            Debug.Log("Hit a brick.");
+            Destroy(col.gameObject);
+            // increment the score
+            gameManager.GetComponent<GameManager>().UpdateScore(100);
         }
     }
 }
