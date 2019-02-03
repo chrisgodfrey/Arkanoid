@@ -120,8 +120,7 @@ public class Ball : MonoBehaviour
         // Hit the Racket?
         if (col.gameObject.name == "racket")
         {
-            Debug.Log("BALL HIT RACKET LOLOLOL");
-            // play 'hit vaus' sound <- why is this playing on ball loss?
+            // play 'hit vaus' sound
             GetComponent<AudioSource>().PlayOneShot(hitVaus, 1);
 
             // Calculate hit Factor
@@ -137,7 +136,7 @@ public class Ball : MonoBehaviour
         }
 
         // Hit a red brick?
-        if (col.gameObject.tag == "red_brick")
+        if (col.gameObject.tag == "Brick")
         {
             Debug.Log("Hit a brick.");
             Destroy(col.gameObject);
@@ -146,6 +145,16 @@ public class Ball : MonoBehaviour
 
             // play 'hit brick' sound
             GetComponent<AudioSource>().PlayOneShot(hitBrick, 1);
+
+            // should this brick drop something?
+            int x = Random.Range(0,3);
+            if( x == 0)
+            {
+             // instantiate a pickup
+
+             // start moving the pickup downwards
+            
+            }
         }
     }
 }
