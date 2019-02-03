@@ -15,6 +15,7 @@ public class Ball : MonoBehaviour
     public AudioClip startMusic;
     public AudioClip hitBrick;
     public AudioClip hitVaus;
+    public GameObject pickupExpand;
 
     float hitFactor(Vector2 ballPos, Vector2 racketPos, float racketWidth)
     {
@@ -112,7 +113,6 @@ public class Ball : MonoBehaviour
             Destroy(playerObject);
             Destroy(gameObject);
         }
-
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -135,12 +135,10 @@ public class Ball : MonoBehaviour
             GetComponent<Rigidbody2D>().velocity = dir * speed;
         }
 
-        // Hit a red brick?
+        // Hit a brick?
         if (col.gameObject.tag == "Brick")
         {
-            Debug.Log("Hit a brick.");
-            Destroy(col.gameObject);
-            // increment the score
+            // increase the score
             gameManager.GetComponent<GameManager>().UpdateScore(100);
 
             // play 'hit brick' sound
@@ -148,13 +146,13 @@ public class Ball : MonoBehaviour
 
             // should this brick drop something?
             int x = Random.Range(0,3);
-            if( x == 0)
+            if (x == 0)
             {
-             // instantiate a pickup
-
-             // start moving the pickup downwards
-            
+                // instantiate an "Expand" pickup
+                Instantiate(pickupExpand, transform.position, transform.rotation);
             }
+            // remove the brick that we hit
+            Destroy(col.gameObject);
         }
     }
 }

@@ -1255,6 +1255,8 @@ MonoBehaviour:
   startMusic: {fileID: 8300000, guid: 64b864f635fcb604c86aefb7ec940178, type: 3}
   hitBrick: {fileID: 8300000, guid: 58ecc57cb3f27fd42abf69b38f9e1ddb, type: 3}
   hitVaus: {fileID: 8300000, guid: 80c68e2946890244d82443fb897eee08, type: 3}
+  pickupExpand: {fileID: 6016710352491444960, guid: 7e8dac43b16755c43abf792b12d05724,
+    type: 3}
 --- !u!50 &294495123
 Rigidbody2D:
   serializedVersion: 4
@@ -5060,6 +5062,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 150
   lives: 3
+  bigShip: {fileID: 21300000, guid: 8652160e568fd12458cf89efa86b0a9f, type: 3}
+  normalShip: {fileID: 21300000, guid: b8c22cd0c2f7a6946971bebd5a3c15f5, type: 3}
 --- !u!50 &1180706775
 Rigidbody2D:
   serializedVersion: 4
