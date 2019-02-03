@@ -59,7 +59,7 @@ public class Ball : MonoBehaviour
                     // mark the ball as Active
                     ballActive = true;
 
-                    // play 'hit vaus' sound
+                    // play 'hit vaus' sound <- this is not the issue dude
                     GetComponent<AudioSource>().PlayOneShot(hitVaus, 1);
                 }
             }
@@ -67,9 +67,10 @@ public class Ball : MonoBehaviour
             if (ballActive == false && playerObject != null)
             {
                 // get and use the player position
-                ballPosition.x = playerObject.transform.position.x + 20;
+                ballPosition.x = (playerObject.transform.position.x + 20);
+                ballPosition.y = (playerObject.transform.position.y + 12);
 
-                // apply player X position to the ball
+                // apply player position to the ball
                 GetComponent<Rigidbody2D>().transform.position = ballPosition;
             }
 
@@ -84,6 +85,7 @@ public class Ball : MonoBehaviour
                 playerObject.GetComponent<Rigidbody2D>().MovePosition(new Vector2(84, 16));
 
                 Debug.Log("Player Lives = " + playerObject.GetComponent<Racket>().lives);
+
                 if (playerObject.GetComponent<Racket>().lives > 0)
                 {
                     // play starting music! yeah!!
@@ -118,6 +120,10 @@ public class Ball : MonoBehaviour
         // Hit the Racket?
         if (col.gameObject.name == "racket")
         {
+            Debug.Log("BALL HIT RACKET LOLOLOL");
+            // play 'hit vaus' sound <- why is this playing on ball loss?
+            GetComponent<AudioSource>().PlayOneShot(hitVaus, 1);
+
             // Calculate hit Factor
             float x = hitFactor(transform.position,
                               col.transform.position,
@@ -128,9 +134,6 @@ public class Ball : MonoBehaviour
 
             // Set Velocity with dir * speed
             GetComponent<Rigidbody2D>().velocity = dir * speed;
-
-            // play 'hit vaus' sound
-            GetComponent<AudioSource>().PlayOneShot(hitVaus, 1);
         }
 
         // Hit a red brick?
