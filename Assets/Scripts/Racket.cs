@@ -16,9 +16,4 @@ public class Racket : MonoBehaviour
         // Set Velocity (movement direction * speed)
         GetComponent<Rigidbody2D>().velocity = Vector2.right * h * speed;
     }
-
-    void Update()
-    {
-
-    }
 }

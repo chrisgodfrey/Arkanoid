@@ -12,6 +12,9 @@ public class Ball : MonoBehaviour
     public GameObject vausLife3;
     public GameObject vausLife2;
     public bool gameOver;
+    public AudioClip startMusic;
+    public AudioClip hitBrick;
+    public AudioClip hitVaus;
 
     float hitFactor(Vector2 ballPos, Vector2 racketPos, float racketWidth)
     {
@@ -35,6 +38,8 @@ public class Ball : MonoBehaviour
         // apply player Y position to the ball
         GetComponent<Rigidbody2D>().transform.position = ballPosition;
 
+        // play starting music! yeah!!
+        GetComponent<AudioSource>().PlayOneShot(startMusic, 1);
     }
 
     void Update()
@@ -53,6 +58,9 @@ public class Ball : MonoBehaviour
 
                     // mark the ball as Active
                     ballActive = true;
+
+                    // play 'hit vaus' sound
+                    GetComponent<AudioSource>().PlayOneShot(hitVaus, 1);
                 }
             }
 
@@ -71,17 +79,25 @@ public class Ball : MonoBehaviour
                 ballActive = false;
                 // decrease player lives by 1
                 playerObject.GetComponent<Racket>().lives -= 1;
+
+                // reset racket position
                 playerObject.GetComponent<Rigidbody2D>().MovePosition(new Vector2(84, 16));
+
                 Debug.Log("Player Lives = " + playerObject.GetComponent<Racket>().lives);
-                if (playerObject.GetComponent<Racket>().lives == 2)
+                if (playerObject.GetComponent<Racket>().lives > 0)
                 {
-                    vausLife3.SetActive(false);
+                    // play starting music! yeah!!
+                    GetComponent<AudioSource>().PlayOneShot(startMusic, 1);
+                    if (playerObject.GetComponent<Racket>().lives == 2)
+                    {
+                        vausLife3.SetActive(false);
+                    }
+                    if (playerObject.GetComponent<Racket>().lives == 1)
+                    {
+                        vausLife2.SetActive(false);
+                    }
                 }
-                if (playerObject.GetComponent<Racket>().lives == 1)
-                {
-                    vausLife2.SetActive(false);
-                }
-                if (playerObject.GetComponent<Racket>().lives == 0)
+                else
                 {
                     Debug.Log("you lost all your lives!");
                     gameOver = true;
@@ -112,6 +128,9 @@ public class Ball : MonoBehaviour
 
             // Set Velocity with dir * speed
             GetComponent<Rigidbody2D>().velocity = dir * speed;
+
+            // play 'hit vaus' sound
+            GetComponent<AudioSource>().PlayOneShot(hitVaus, 1);
         }
 
         // Hit a red brick?
@@ -121,6 +140,9 @@ public class Ball : MonoBehaviour
             Destroy(col.gameObject);
             // increment the score
             gameManager.GetComponent<GameManager>().UpdateScore(100);
+
+            // play 'hit brick' sound
+            GetComponent<AudioSource>().PlayOneShot(hitBrick, 1);
         }
     }
 }
