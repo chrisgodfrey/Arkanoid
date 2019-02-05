@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Brick
   - Expand
+  - Disrupt
+  - Ball
+  - Vaus
   layers:
   - Default
   - TransparentFX

@@ -7,8 +7,7 @@ public class Racket : MonoBehaviour
     // Movement Speed
     public float speed = 150;
     public int lives = 3;
-    public Sprite bigShip;
-    public Sprite normalShip;
+    public GameObject ball;
 
     void FixedUpdate()
     {
@@ -17,15 +16,5 @@ public class Racket : MonoBehaviour
 
         // Set Velocity (movement direction * speed)
         GetComponent<Rigidbody2D>().velocity = Vector2.right * h * speed;
-    }
-
-    void OnTriggerEnter2D(Collider2D col)
-    {
-        // Hit the Racket?
-        if (col.gameObject.tag == "Expand")
-        {
-            Debug.Log("The paddle hit the pickup!");
-            GetComponent<SpriteRenderer>().sprite = bigShip;
-        }
     }
 }
