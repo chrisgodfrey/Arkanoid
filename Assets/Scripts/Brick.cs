@@ -36,7 +36,7 @@ public class Brick : MonoBehaviour
             int x = Random.Range(0, 3);
             if (x == 0)
             {
-                // instantiate an "Expand" pickup
+                // instantiate an "Expand" pickup if ship is not currently expanded
                 Instantiate(pickupExpand, transform.position, transform.rotation);
             }
             if (x == 1 && GameObject.FindGameObjectsWithTag("Ball").Length == 1 && GameObject.FindGameObjectsWithTag("Disrupt").Length == 0)

@@ -13,12 +13,15 @@ public class Ball : MonoBehaviour
     public bool gameOver;
     public AudioClip hitVaus;
     public AudioClip hitBrick;
+    private float LeftWallHitY;
+    private float RightWallHitY;
 
     float hitFactor(Vector2 ballPos, Vector2 racketPos, float racketWidth)
     {
         // 1  -0.5  0  0.5   1  <- x value
         // ===================  <- racket
-        return (ballPos.x - racketPos.x) / racketWidth;
+        //return (ballPos.x - racketPos) / racketWidth);
+        return (ballPos.x - (racketPos.x + (racketWidth / 2))) / racketWidth;
     }
 
     // Use this for initialization
@@ -31,6 +34,45 @@ public class Ball : MonoBehaviour
 
         // apply player Y position to the ball
         //GetComponent<Rigidbody2D>().transform.position = ballPosition;
+    }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        // Hit the Racket?
+        if (col.gameObject.name == "racket")
+        {
+            // play 'hit vaus' sound
+            GetComponent<AudioSource>().PlayOneShot(hitVaus, 1);
+
+            // Calculate hit Factor
+            float x = hitFactor(transform.position,
+                                col.transform.position,
+                             col.collider.bounds.size.x);
+
+            Debug.Log("X = " + x);
+
+            // Calculate direction, set length to 1
+            Vector2 dir = new Vector2(x, 1).normalized;
+
+            // Set Velocity with dir * speed
+            GetComponent<Rigidbody2D>().velocity = dir * speed;
+        }
+
+        // prevent ball from bouncing off walls at 90 degrees
+        if (col.gameObject.tag == "Left")
+        {
+            LeftWallHitY = gameObject.transform.position.y;
+        }
+        if (col.gameObject.tag == "Right")
+        {
+            RightWallHitY = gameObject.transform.position.y;
+        }
+        if (ballActive == true && LeftWallHitY != 0 && LeftWallHitY == RightWallHitY)
+        {
+            // Set starting direction
+            Vector2 dir = new Vector2(50, 100).normalized;
+            GetComponent<Rigidbody2D>().velocity = dir * speed;
+        }
     }
 
     void Update()
@@ -55,6 +97,9 @@ public class Ball : MonoBehaviour
                 }
             }
 
+
+
+
             if (ballActive == false && playerObject != null)
             {
                 // get and use the player position
@@ -65,6 +110,7 @@ public class Ball : MonoBehaviour
                 GetComponent<Rigidbody2D>().transform.position = ballPosition;
             }
 
+            // what to do if the player misses a ball
             if (GetComponent<Rigidbody2D>().transform.position.y < 0 && playerObject.GetComponent<Racket>().lives > 0)
             {
                 // is this the last ball in play?
@@ -107,27 +153,6 @@ public class Ball : MonoBehaviour
         {
             // game over!
             Destroy(playerObject);
-        }
-    }
-
-    void OnCollisionEnter2D(Collision2D col)
-    {
-        // Hit the Racket?
-        if (col.gameObject.name == "racket")
-        {
-            // play 'hit vaus' sound
-            GetComponent<AudioSource>().PlayOneShot(hitVaus, 1);
-
-            // Calculate hit Factor
-            float x = hitFactor(transform.position,
-                              col.transform.position,
-                              col.collider.bounds.size.x);
-
-            // Calculate direction, set length to 1
-            Vector2 dir = new Vector2(x, 1).normalized;
-
-            // Set Velocity with dir * speed
-            GetComponent<Rigidbody2D>().velocity = dir * speed;
         }
     }
 }

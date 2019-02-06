@@ -9,6 +9,8 @@ TagManager:
   - Disrupt
   - Ball
   - Vaus
+  - Left
+  - Right
   layers:
   - Default
   - TransparentFX

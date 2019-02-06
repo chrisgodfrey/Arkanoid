@@ -28,7 +28,7 @@ public class Disrupt : MonoBehaviour
         {
             Debug.Log("Picked up Disrupt!");
 
-            // run this part twice - I want to create an extra 2 balls for Disrupt
+            // Create two extra balls
             for (int i = 0; i < 2; i++)
             {
                 // spawn a new ball!
@@ -37,16 +37,12 @@ public class Disrupt : MonoBehaviour
                 // get and use the player's Y position
                 ballPosition.y = playerObject.transform.position.y + 10;
                 ballPosition.x = playerObject.transform.position.x;
-
                 // apply player position to the ball
                 GetComponent<Rigidbody2D>().transform.position = ballPosition;
-
                 // Set starting direction
-                Vector2 dir = new Vector2(50, 100).normalized;
-
+                Vector2 dir = new Vector2(Random.Range(-50,50), 100).normalized;
                 // Set Velocity with dir * speed
                 newBall.GetComponent<Rigidbody2D>().velocity = dir * newBall.GetComponent<Ball>().speed;
-
                 // mark the ball as Active
                 newBall.GetComponent<Ball>().ballActive = true;
             }
