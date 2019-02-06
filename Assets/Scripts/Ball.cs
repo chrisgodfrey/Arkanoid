@@ -34,6 +34,9 @@ public class Ball : MonoBehaviour
 
         // apply player Y position to the ball
         //GetComponent<Rigidbody2D>().transform.position = ballPosition;
+
+        // don't bump into other balls
+        Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), GameObject.FindGameObjectWithTag("Ball").GetComponent<Collider2D>());
     }
 
     void OnCollisionEnter2D(Collision2D col)
