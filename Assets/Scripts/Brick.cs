@@ -39,7 +39,7 @@ public class Brick : MonoBehaviour
                 // instantiate an "Expand" pickup
                 Instantiate(pickupExpand, transform.position, transform.rotation);
             }
-            if (x == 1 && GameObject.FindGameObjectsWithTag("Ball").Length == 1)
+            if (x == 1 && GameObject.FindGameObjectsWithTag("Ball").Length == 1 && GameObject.FindGameObjectsWithTag("Disrupt").Length == 0)
             {
                 // Instantiate a "Disrupt" pickup if only 1 ball in play
                 Instantiate(pickupDisrupt, transform.position, transform.rotation);
