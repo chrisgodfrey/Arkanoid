@@ -5,9 +5,9 @@ using UnityEngine;
 public class Brick : MonoBehaviour
 {
     public GameManager gameManager;
-    public AudioClip hitBrick;
     public GameObject pickupExpand;
     public GameObject pickupDisrupt;
+    public AudioClip sound;
 
     void Start()
     {
@@ -23,8 +23,14 @@ public class Brick : MonoBehaviour
             // increase the score
             gameManager.GetComponent<GameManager>().UpdateScore(100);
 
-            // play 'hit vaus' sound
-            GetComponent<AudioSource>().PlayOneShot(hitBrick, 1);
+            // spawn an AudioSource at origin 
+            // then dispose of it when the sound has played
+            // need this weird behaviour because the brick will be destroyed immediately
+            // which would also destroy any audiosource components on this object
+            // and make the sound not play
+            // cameraZpos is needed to get the sound to play close to the camera
+            // otherwise its way too quiet and we can't hear it
+            AudioSource.PlayClipAtPoint(sound,new Vector3(103,136,-5),1f);
 
             // should this brick drop something?
             int x = Random.Range(0, 3);
@@ -33,9 +39,9 @@ public class Brick : MonoBehaviour
                 // instantiate an "Expand" pickup
                 Instantiate(pickupExpand, transform.position, transform.rotation);
             }
-            if (x == 1)
+            if (x == 1 && GameObject.FindGameObjectsWithTag("Ball").Length == 1)
             {
-                // Instantiate a "Disrupt" pickup
+                // Instantiate a "Disrupt" pickup if only 1 ball in play
                 Instantiate(pickupDisrupt, transform.position, transform.rotation);
             }
             // destroy this brick

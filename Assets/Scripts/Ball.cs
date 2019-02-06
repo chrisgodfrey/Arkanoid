@@ -12,7 +12,8 @@ public class Ball : MonoBehaviour
     public GameObject vausLife2;
     public bool gameOver;
     public AudioClip hitVaus;
- 
+    public AudioClip hitBrick;
+
     float hitFactor(Vector2 ballPos, Vector2 racketPos, float racketWidth)
     {
         // 1  -0.5  0  0.5   1  <- x value
@@ -26,10 +27,10 @@ public class Ball : MonoBehaviour
         gameOver = false;
 
         // get and use the player's Y position
-        ballPosition.y = playerObject.transform.position.y + 10;
+        //ballPosition.y = playerObject.transform.position.y + 10;
 
         // apply player Y position to the ball
-        GetComponent<Rigidbody2D>().transform.position = ballPosition;
+        //GetComponent<Rigidbody2D>().transform.position = ballPosition;
     }
 
     void Update()
