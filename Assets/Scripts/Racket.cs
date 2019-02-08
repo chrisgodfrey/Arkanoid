@@ -114,6 +114,31 @@ public class Racket : MonoBehaviour
             }
         }
 
+        // Did the player hit a Slow pickup?
+        if (col.gameObject.tag == "Slow")
+        {
+            Debug.Log("Picked up Slow!");
+            laserEnabled = false;
+            // Slow down the balls!
+
+            // populate an array with all the balls currently in play
+            GameObject[] activeBalls = GameObject.FindGameObjectsWithTag("Ball");
+
+            // iterate on each ball, setting the speed
+            for (int i = 0; i < GameObject.FindGameObjectsWithTag("Ball").Length; i++)
+            {
+                // Get current direction of ball
+                Vector2 dir = activeBalls[i].GetComponent<Rigidbody2D>().velocity;
+
+                float sp = 0.5f;
+
+                // Set Velocity with dir * sp
+                activeBalls[i].GetComponent<Rigidbody2D>().velocity = dir * sp;
+            }
+            // get rid of the pickup
+            Destroy(col.gameObject);
+        }
+
     }
 
     IEnumerator ExpandTime()
