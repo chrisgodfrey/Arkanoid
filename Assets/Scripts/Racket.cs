@@ -29,6 +29,7 @@ public class Racket : MonoBehaviour
     public bool catchEnabled = false;
 
     // Break
+    public GameObject portal;
 
 
     void FixedUpdate()
@@ -155,10 +156,21 @@ public class Racket : MonoBehaviour
         if (col.gameObject.tag == "Break")
         {
             Debug.Log("Picked up Break!");
-            // TODO: Open a portal to the next level
-
             // get rid of the pickup
             Destroy(col.gameObject);
+            // only ever spawn a single portal
+            if (GameObject.FindGameObjectsWithTag("Portal").Length == 0)
+            {
+                // Open a portal to the next level
+                Instantiate(portal);
+            }
+        }
+
+        // Did the racket hit a portal?
+        if (col.gameObject.tag == "Portal")
+        {
+            // Load the next level
+            Debug.Log("Loading next level!");
         }
 
     }

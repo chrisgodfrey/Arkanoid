@@ -4824,6 +4824,8 @@ MonoBehaviour:
   pewPew: {fileID: 2032247272603346806, guid: 1111032da2c844e45822ebfd77cdf7cf, type: 3}
   pewSpeed: 200
   disruptBalls: 2
+  catchEnabled: 0
+  portal: {fileID: 8504690232682603576, guid: 1d1cb82aa63d73348bc1b577abc64f4f, type: 3}
 --- !u!50 &1180706775
 Rigidbody2D:
   serializedVersion: 4

@@ -39,10 +39,7 @@ public class Brick : MonoBehaviour
             AudioSource.PlayClipAtPoint(sound, new Vector3(103, 136, -5), 1f);
 
             // should this brick drop something?
-            //int x = Random.Range(0, 10);
-
-            // testing...
-            int x = 4;
+            int x = Random.Range(0, 10);
 
             if (x == 0)
             {
@@ -56,8 +53,12 @@ public class Brick : MonoBehaviour
             }
             if (x == 2)
             {
-                // Instantiate a "Laser" pickup
-                Instantiate(pickupLaser, transform.position, transform.rotation);
+                int y = Random.Range(0, 3); // make lasers less likely to drop
+                if (y == 1)
+                {
+                    // Instantiate a "Laser" pickup
+                    Instantiate(pickupLaser, transform.position, transform.rotation);
+                }
             }
             if (x == 3)
             {
@@ -71,8 +72,12 @@ public class Brick : MonoBehaviour
             }
             if (x == 5)
             {
-                // Instantiate a "Break" pickup
-                Instantiate(pickupBreak, transform.position, transform.rotation);
+                int y = Random.Range(0, 30); // make Break less likely to drop
+                if (y == 1)
+                {
+                    // Instantiate a "Break" pickup
+                    Instantiate(pickupBreak, transform.position, transform.rotation);
+                }
             }
             // destroy this brick
             Destroy(gameObject);

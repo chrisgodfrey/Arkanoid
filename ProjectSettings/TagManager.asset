@@ -17,6 +17,7 @@ TagManager:
   - Slow
   - Break
   - Catch
+  - Portal
   layers:
   - Default
   - TransparentFX

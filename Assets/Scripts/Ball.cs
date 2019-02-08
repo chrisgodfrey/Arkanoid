@@ -92,9 +92,6 @@ public class Ball : MonoBehaviour
                 }
             }
 
-
-
-
             if (ballActive == false && playerObject != null)
             {
                 // get and use the player position
