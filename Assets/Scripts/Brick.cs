@@ -8,8 +8,8 @@ public class Brick : MonoBehaviour
     public GameObject pickupExpand;
     public GameObject pickupDisrupt;
     public GameObject pickupLaser;
-
     public AudioClip sound;
+    private int brickHealth = 4;
 
     void Start()
     {
@@ -53,6 +53,26 @@ public class Brick : MonoBehaviour
             }
             // destroy this brick
             Destroy(gameObject);
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        // Did a laser hit this brick?
+        if (col.gameObject.tag == "PewPew")
+        {
+            // Destroy the laser
+            Destroy(col.gameObject);
+
+            // decrease the health of the brick
+            brickHealth = brickHealth - 1;
+            if (brickHealth < 1)
+            {
+                // increase the score
+                gameManager.GetComponent<GameManager>().UpdateScore(100);
+                // Destroy the brick
+                Destroy(gameObject);
+            }
         }
     }
 }

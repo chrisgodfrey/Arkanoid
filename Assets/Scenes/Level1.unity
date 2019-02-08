@@ -4818,6 +4818,12 @@ MonoBehaviour:
   speed: 150
   lives: 3
   ball: {fileID: 294495119}
+  bigShip: {fileID: 21300000, guid: 8652160e568fd12458cf89efa86b0a9f, type: 3}
+  normalShip: {fileID: 21300000, guid: b8c22cd0c2f7a6946971bebd5a3c15f5, type: 3}
+  laserShip: {fileID: 21300000, guid: 729d6cabfa60b3f409d7fc31eaeb7066, type: 3}
+  pewPew: {fileID: 2032247272603346806, guid: 1111032da2c844e45822ebfd77cdf7cf, type: 3}
+  pewSpeed: 200
+  disruptBalls: 2
 --- !u!50 &1180706775
 Rigidbody2D:
   serializedVersion: 4
@@ -5900,7 +5906,7 @@ GameObject:
   - component: {fileID: 1468967203}
   m_Layer: 0
   m_Name: WallTop
-  m_TagString: Untagged
+  m_TagString: Top
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6487,7 +6493,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 4, y: 120}
+  m_Offset: {x: 44.577515, y: 120}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -6498,7 +6504,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 8, y: 240}
+  m_Size: {x: 89.15503, y: 240}
   m_EdgeRadius: 0
 --- !u!1001 &1529802532
 PrefabInstance:
@@ -6753,7 +6759,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 4, y: 120}
+  m_Offset: {x: -49.197014, y: 120}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -6764,7 +6770,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 8, y: 240}
+  m_Size: {x: 114.39403, y: 240}
   m_EdgeRadius: 0
 --- !u!1001 &1550780586
 PrefabInstance:
@@ -9319,7 +9325,7 @@ PrefabInstance:
     - target: {fileID: 6655004087670732893, guid: 0b3fb13fd6bc90e4583685b056c01098,
         type: 3}
       propertyPath: speed
-      value: 120
+      value: 110
       objectReference: {fileID: 0}
     - target: {fileID: 6655004087670732892, guid: 0b3fb13fd6bc90e4583685b056c01098,
         type: 3}

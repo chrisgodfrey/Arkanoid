@@ -5,7 +5,6 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-
     public int score;
     public int highscore;
     public GameObject scoreText;

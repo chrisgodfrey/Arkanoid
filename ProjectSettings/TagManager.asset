@@ -12,6 +12,8 @@ TagManager:
   - Left
   - Right
   - Laser
+  - PewPew
+  - Top
   layers:
   - Default
   - TransparentFX
