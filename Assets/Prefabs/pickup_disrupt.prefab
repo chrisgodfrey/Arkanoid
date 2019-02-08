@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3057053132857825153}
   - component: {fileID: 5554930989405928626}
   - component: {fileID: 1173126543807418560}
+  - component: {fileID: 4606080072773389098}
   m_Layer: 0
   m_Name: pickup_disrupt
   m_TagString: Disrupt
@@ -141,4 +142,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 828d505ab2ff1be4db943362043036ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ball: {fileID: 795061876426815672, guid: efffa873a08a63e4c8d0382e8ce5fe16, type: 3}
+--- !u!95 &4606080072773389098
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5499329092013493906}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 48f2ce3c420471b49a0f49342c0a1397, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

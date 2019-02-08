@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8105413417494148827}
   - component: {fileID: 8584014551188895023}
   - component: {fileID: 1432795967512780771}
+  - component: {fileID: 1856818332639760467}
   m_Layer: 0
   m_Name: pickup_expand
   m_TagString: Expand
@@ -141,6 +142,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acdbfaf0ae7b9cb4d952922c7050cd91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vaus: {fileID: 0}
+  racket: {fileID: 0}
   bigShip: {fileID: 21300000, guid: 8652160e568fd12458cf89efa86b0a9f, type: 3}
   normalShip: {fileID: 21300000, guid: b8c22cd0c2f7a6946971bebd5a3c15f5, type: 3}
+--- !u!95 &1856818332639760467
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6016710352491444960}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6d3064572e6dde94cb37f607331d7ac3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

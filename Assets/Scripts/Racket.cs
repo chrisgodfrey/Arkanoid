@@ -8,6 +8,14 @@ public class Racket : MonoBehaviour
     public float speed = 150;
     public int lives = 3;
     public GameObject ball;
+    Animator anim;
+    int deadHash = Animator.StringToHash("Dead");
+
+
+    void Start()
+    {
+        anim = GetComponent<Animator>();
+    }
 
     void FixedUpdate()
     {
@@ -16,5 +24,10 @@ public class Racket : MonoBehaviour
 
         // Set Velocity (movement direction * speed)
         GetComponent<Rigidbody2D>().velocity = Vector2.right * h * speed;
+
+        // if (ball.GetComponent<Ball>().gameOver == true)
+        // {
+        //     //anim.SetTrigger(deadHash);
+        // }
     }
 }

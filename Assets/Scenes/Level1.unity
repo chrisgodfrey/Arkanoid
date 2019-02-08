@@ -9316,5 +9316,15 @@ PrefabInstance:
       propertyPath: vausLife2
       value: 
       objectReference: {fileID: 267304113}
+    - target: {fileID: 6655004087670732893, guid: 0b3fb13fd6bc90e4583685b056c01098,
+        type: 3}
+      propertyPath: speed
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 6655004087670732892, guid: 0b3fb13fd6bc90e4583685b056c01098,
+        type: 3}
+      propertyPath: m_GravityScale
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b3fb13fd6bc90e4583685b056c01098, type: 3}

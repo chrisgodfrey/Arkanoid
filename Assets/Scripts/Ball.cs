@@ -20,7 +20,7 @@ public class Ball : MonoBehaviour
     {
         // 1  -0.5  0  0.5   1  <- x value
         // ===================  <- racket
-        //return (ballPos.x - racketPos) / racketWidth);
+        // x                    <- origin point of racket sprite
         return (ballPos.x - (racketPos.x + (racketWidth / 2))) / racketWidth;
     }
 
@@ -28,12 +28,6 @@ public class Ball : MonoBehaviour
     void Start()
     {
         gameOver = false;
-
-        // get and use the player's Y position
-        //ballPosition.y = playerObject.transform.position.y + 10;
-
-        // apply player Y position to the ball
-        //GetComponent<Rigidbody2D>().transform.position = ballPosition;
 
         // don't bump into other balls
         Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), GameObject.FindGameObjectWithTag("Ball").GetComponent<Collider2D>());
@@ -51,8 +45,6 @@ public class Ball : MonoBehaviour
             float x = hitFactor(transform.position,
                                 col.transform.position,
                              col.collider.bounds.size.x);
-
-            Debug.Log("X = " + x);
 
             // Calculate direction, set length to 1
             Vector2 dir = new Vector2(x, 1).normalized;
