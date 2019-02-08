@@ -25,10 +25,11 @@ public class Racket : MonoBehaviour
     private GameObject newBall;
     private Vector2 ballPosition;
 
-    void Start()
-    {
+    // Catch
+    public bool catchEnabled = false;
 
-    }
+    // Break
+
 
     void FixedUpdate()
     {
@@ -139,6 +140,27 @@ public class Racket : MonoBehaviour
             Destroy(col.gameObject);
         }
 
+        // Did the player hit a Catch pickup?
+        if (col.gameObject.tag == "Catch")
+        {
+            Debug.Log("Picked up Catch!");
+            // TODO: Catch a ball
+            catchEnabled = true;
+
+            // get rid of the pickup
+            Destroy(col.gameObject);
+        }
+
+        // Did the player hit a Break pickup?
+        if (col.gameObject.tag == "Break")
+        {
+            Debug.Log("Picked up Break!");
+            // TODO: Open a portal to the next level
+
+            // get rid of the pickup
+            Destroy(col.gameObject);
+        }
+
     }
 
     IEnumerator ExpandTime()
@@ -164,4 +186,15 @@ public class Racket : MonoBehaviour
         gameObject.GetComponent<BoxCollider2D>().offset = normalShip.bounds.center;
         laserEnabled = false;
     }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        // Did the racket hit a ball while in Catch mode?
+        if (col.gameObject.tag == "Ball" && catchEnabled == true)
+        {
+            catchEnabled = false;
+            col.gameObject.GetComponent<Ball>().ballActive = false;
+        }
+    }
+
 }

@@ -9,6 +9,8 @@ public class Brick : MonoBehaviour
     public GameObject pickupDisrupt;
     public GameObject pickupLaser;
     public GameObject pickupSlow;
+    public GameObject pickupCatch;
+    public GameObject pickupBreak;
 
     public AudioClip sound;
     private int brickHealth = 4;
@@ -37,7 +39,11 @@ public class Brick : MonoBehaviour
             AudioSource.PlayClipAtPoint(sound, new Vector3(103, 136, -5), 1f);
 
             // should this brick drop something?
-            int x = Random.Range(0, 5);
+            //int x = Random.Range(0, 10);
+
+            // testing...
+            int x = 4;
+
             if (x == 0)
             {
                 // instantiate an "Expand" pickup if ship is not currently expanded
@@ -57,6 +63,16 @@ public class Brick : MonoBehaviour
             {
                 // Instantiate a "Slow" pickup
                 Instantiate(pickupSlow, transform.position, transform.rotation);
+            }
+            if (x == 4)
+            {
+                // Instantiate a "Catch" pickup
+                Instantiate(pickupCatch, transform.position, transform.rotation);
+            }
+            if (x == 5)
+            {
+                // Instantiate a "Break" pickup
+                Instantiate(pickupBreak, transform.position, transform.rotation);
             }
             // destroy this brick
             Destroy(gameObject);
