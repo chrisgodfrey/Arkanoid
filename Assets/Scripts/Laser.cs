@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Expand : MonoBehaviour
+public class Laser : MonoBehaviour
 {
     public GameObject racket;
-    public Sprite bigShip;
+    public Sprite laserShip;
     public Sprite normalShip;
-    private bool expandActive = false;
+    private bool laserActive = false;
 
     // Update is called once per frame
     void Update()
     {
-        if (GetComponent<Rigidbody2D>().transform.position.y < 0 && expandActive == false)
+        if (GetComponent<Rigidbody2D>().transform.position.y < 0 && laserActive == false)
         {
             Destroy(gameObject);
         }
@@ -24,25 +24,27 @@ public class Expand : MonoBehaviour
         // did the pickup hit the player?
         if (col.gameObject.tag == "Vaus")
         {
-            Debug.Log("Picked up Expand!");
-            // expand the ship!
-            racket.GetComponent<SpriteRenderer>().sprite = bigShip;
-            racket.GetComponent<BoxCollider2D>().size = bigShip.bounds.size;
-            racket.GetComponent<BoxCollider2D>().offset = bigShip.bounds.center;
-            expandActive = true;
+            Debug.Log("Picked up Laser!");
+            // turn the ship into a shooty blast cannon!
+            racket.GetComponent<SpriteRenderer>().sprite = laserShip;
+            racket.GetComponent<BoxCollider2D>().size = laserShip.bounds.size;
+            racket.GetComponent<BoxCollider2D>().offset = laserShip.bounds.center;
+            laserActive = true;
             // we only want to be expanded for a limited time
-            StartCoroutine(ExpandTime());
+            StartCoroutine(LaserTime());
         }
     }
 
-    IEnumerator ExpandTime()
+    IEnumerator LaserTime()
     {
+        Debug.Log("started laser timer for 15s");
         // set a timer for 15 seconds of elapsed time...
         yield return new WaitForSeconds(15);
-        // shrink the ship to normal size
+        // turn the ship into a normal Vaus
+        Debug.Log("reverting to normal ship");
         racket.GetComponent<SpriteRenderer>().sprite = normalShip;
         racket.GetComponent<BoxCollider2D>().size = normalShip.bounds.size;
         racket.GetComponent<BoxCollider2D>().offset = normalShip.bounds.center;
-        expandActive = false;
+        laserActive = false;
     }
 }

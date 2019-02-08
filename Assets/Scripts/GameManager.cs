@@ -12,7 +12,6 @@ public class GameManager : MonoBehaviour
     public GameObject highScoreText;
     public AudioClip startMusic;
 
-
     // Start is called before the first frame update
     void Start()
     {

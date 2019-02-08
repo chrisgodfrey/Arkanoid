@@ -7,6 +7,8 @@ public class Brick : MonoBehaviour
     public GameManager gameManager;
     public GameObject pickupExpand;
     public GameObject pickupDisrupt;
+    public GameObject pickupLaser;
+
     public AudioClip sound;
 
     void Start()
@@ -30,7 +32,7 @@ public class Brick : MonoBehaviour
             // and make the sound not play
             // cameraZpos is needed to get the sound to play close to the camera
             // otherwise its way too quiet and we can't hear it
-            AudioSource.PlayClipAtPoint(sound,new Vector3(103,136,-5),1f);
+            AudioSource.PlayClipAtPoint(sound, new Vector3(103, 136, -5), 1f);
 
             // should this brick drop something?
             int x = Random.Range(0, 3);
@@ -43,6 +45,11 @@ public class Brick : MonoBehaviour
             {
                 // Instantiate a "Disrupt" pickup if only 1 ball in play
                 Instantiate(pickupDisrupt, transform.position, transform.rotation);
+            }
+            if (x == 2)
+            {
+                // Instantiate a "Laser" pickup
+                Instantiate(pickupLaser, transform.position, transform.rotation);
             }
             // destroy this brick
             Destroy(gameObject);
