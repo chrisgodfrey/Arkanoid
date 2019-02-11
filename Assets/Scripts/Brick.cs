@@ -39,7 +39,7 @@ public class Brick : MonoBehaviour
             AudioSource.PlayClipAtPoint(sound, new Vector3(103, 136, -5), 1f);
 
             // should this brick drop something?
-            int x = Random.Range(0, 15);
+            int x = Random.Range(0, 6); // 0-15 for normal play
 
             if (x == 0)
             {
@@ -68,12 +68,8 @@ public class Brick : MonoBehaviour
             }
             if (x == 5)
             {
-                int y = Random.Range(0, 50); // make Break less likely to drop
-                if (y == 1)
-                {
-                    // Instantiate a "Break" pickup
-                    Instantiate(pickupBreak, transform.position, transform.rotation);
-                }
+                // Instantiate a "Break" pickup
+                Instantiate(pickupBreak, transform.position, transform.rotation);
             }
             // destroy this brick
             Destroy(gameObject);

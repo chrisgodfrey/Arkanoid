@@ -4816,7 +4816,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 150
-  lives: 3
   ball: {fileID: 294495119}
   bigShip: {fileID: 21300000, guid: 8652160e568fd12458cf89efa86b0a9f, type: 3}
   normalShip: {fileID: 21300000, guid: b8c22cd0c2f7a6946971bebd5a3c15f5, type: 3}
@@ -8650,7 +8649,11 @@ MonoBehaviour:
   highscore: 0
   scoreText: {fileID: 1906062221}
   highScoreText: {fileID: 2030189941}
+  lives: 3
   startMusic: {fileID: 0}
+  playerObject: {fileID: 1180706773}
+  vausLife3: {fileID: 244040341}
+  vausLife2: {fileID: 267304113}
 --- !u!4 &2018574615
 Transform:
   m_ObjectHideFlags: 0
@@ -9329,6 +9332,11 @@ PrefabInstance:
       propertyPath: speed
       value: 110
       objectReference: {fileID: 0}
+    - target: {fileID: 6655004087670732893, guid: 0b3fb13fd6bc90e4583685b056c01098,
+        type: 3}
+      propertyPath: GameManager
+      value: 
+      objectReference: {fileID: 2018574613}
     - target: {fileID: 6655004087670732892, guid: 0b3fb13fd6bc90e4583685b056c01098,
         type: 3}
       propertyPath: m_GravityScale

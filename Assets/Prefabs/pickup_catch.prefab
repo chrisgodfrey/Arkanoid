@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 9098504070114022143}
   - component: {fileID: 7703396014209768032}
   - component: {fileID: 1311338226188855288}
+  - component: {fileID: 1225359165302241162}
   m_Layer: 0
   m_Name: pickup_catch
   m_TagString: Catch
@@ -68,8 +69,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -777107351
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 23710c7dc636e904fa26a888d79e8b19, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -148,3 +149,15 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1225359165302241162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3350180172645712148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d6f235cb92aa5d42823b1086777cab4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

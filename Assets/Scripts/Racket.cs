@@ -6,7 +6,6 @@ public class Racket : MonoBehaviour
 {
     // Movement Speed
     public float speed = 150;
-    public int lives = 3;
     public GameObject ball;
 
     // Expand
@@ -147,7 +146,7 @@ public class Racket : MonoBehaviour
             Debug.Log("Picked up Catch!");
             // TODO: Catch a ball
             catchEnabled = true;
-
+            ResetShip();
             // get rid of the pickup
             Destroy(col.gameObject);
         }
@@ -180,9 +179,7 @@ public class Racket : MonoBehaviour
         // set a timer for 15 seconds of elapsed time...
         yield return new WaitForSeconds(15);
         // shrink the ship to normal size
-        gameObject.GetComponent<SpriteRenderer>().sprite = normalShip;
-        gameObject.GetComponent<BoxCollider2D>().size = normalShip.bounds.size;
-        gameObject.GetComponent<BoxCollider2D>().offset = normalShip.bounds.center;
+        ResetShip();
     }
 
     IEnumerator LaserTime()
@@ -191,12 +188,7 @@ public class Racket : MonoBehaviour
         laserEnabled = true;
         // set a timer for 15 seconds of elapsed time...
         yield return new WaitForSeconds(15);
-        // turn the ship into a normal Vaus
-        Debug.Log("reverting to normal ship");
-        gameObject.GetComponent<SpriteRenderer>().sprite = normalShip;
-        gameObject.GetComponent<BoxCollider2D>().size = normalShip.bounds.size;
-        gameObject.GetComponent<BoxCollider2D>().offset = normalShip.bounds.center;
-        laserEnabled = false;
+        ResetShip();
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -207,6 +199,16 @@ public class Racket : MonoBehaviour
             catchEnabled = false;
             col.gameObject.GetComponent<Ball>().ballActive = false;
         }
+    }
+
+    public void ResetShip()
+    {
+        // turn the ship into a normal Vaus
+        Debug.Log("reverting to normal ship");
+        gameObject.GetComponent<SpriteRenderer>().sprite = normalShip;
+        gameObject.GetComponent<BoxCollider2D>().size = normalShip.bounds.size;
+        gameObject.GetComponent<BoxCollider2D>().offset = normalShip.bounds.center;
+        laserEnabled = false;
     }
 
 }

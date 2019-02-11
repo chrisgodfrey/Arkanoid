@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Break : MonoBehaviour
+public class Catch : MonoBehaviour
 {
     // Update is called once per frame
     void Update()
