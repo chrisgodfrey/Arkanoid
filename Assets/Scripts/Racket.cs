@@ -8,13 +8,12 @@ public class Racket : MonoBehaviour
     public float speed = 150;
     public GameObject ball;
 
-    // Expand
-    public Sprite bigShip;
-    public Sprite normalShip;
+    // Animation
+    private Animator animPlayer;
 
     // Laser
     public Sprite laserShip;
-    private bool laserEnabled = false;
+    public bool laserEnabled = false;
     public GameObject pewPew;
     private Vector2 pewPosition;
     public float pewSpeed = 200;
@@ -30,6 +29,14 @@ public class Racket : MonoBehaviour
     // Break
     public GameObject portal;
 
+    // Expand
+    public bool expandEnabled = false;
+
+
+    void Start()
+    {
+        animPlayer = gameObject.GetComponent<Animator>();
+    }
 
     void FixedUpdate()
     {
@@ -63,11 +70,16 @@ public class Racket : MonoBehaviour
         if (col.gameObject.tag == "Expand")
         {
             Debug.Log("Picked up Expand!");
-            laserEnabled = false;
+            if (laserEnabled == true)
+            {
+                animPlayer.SetBool("PlayerLaser", false);
+                laserEnabled = false;
+            }
+            gameObject.GetComponent<BoxCollider2D>().size = new Vector2(48, 8);
+            gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(24, 4);
             // expand the ship!
-            gameObject.GetComponent<SpriteRenderer>().sprite = bigShip;
-            gameObject.GetComponent<BoxCollider2D>().size = bigShip.bounds.size;
-            gameObject.GetComponent<BoxCollider2D>().offset = bigShip.bounds.center;
+            animPlayer.SetBool("PlayerExpanded", true);
+            expandEnabled = true;
             // get rid of the pickup
             Destroy(col.gameObject);
             // we only want to be expanded for a limited time
@@ -79,9 +91,14 @@ public class Racket : MonoBehaviour
         {
             Debug.Log("Picked up Laser!");
             // turn the ship into a shooty blast cannon!
-            gameObject.GetComponent<SpriteRenderer>().sprite = laserShip;
-            gameObject.GetComponent<BoxCollider2D>().size = laserShip.bounds.size;
-            gameObject.GetComponent<BoxCollider2D>().offset = laserShip.bounds.center;
+            animPlayer.SetBool("PlayerLaser", true);
+            laserEnabled = true;
+            if (expandEnabled == true)
+            {
+                animPlayer.SetBool("PlayerExpanded", false);
+                gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(16, 4);
+                gameObject.GetComponent<BoxCollider2D>().size = new Vector2(32, 8);
+            }
             // get rid of the pickup
             Destroy(col.gameObject);
             // we only want to be expanded for a limited time
@@ -146,7 +163,6 @@ public class Racket : MonoBehaviour
             Debug.Log("Picked up Catch!");
             // TODO: Catch a ball
             catchEnabled = true;
-            ResetShip();
             // get rid of the pickup
             Destroy(col.gameObject);
         }
@@ -176,19 +192,22 @@ public class Racket : MonoBehaviour
 
     IEnumerator ExpandTime()
     {
-        // set a timer for 15 seconds of elapsed time...
-        yield return new WaitForSeconds(15);
+        // set a timer for 10 seconds of elapsed time...
+        yield return new WaitForSeconds(10);
         // shrink the ship to normal size
-        ResetShip();
+        animPlayer.SetBool("PlayerExpanded", false);
+        gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(16, 4);
+        gameObject.GetComponent<BoxCollider2D>().size = new Vector2(32, 8);
+        expandEnabled = false;
     }
 
     IEnumerator LaserTime()
     {
-        Debug.Log("started laser timer for 15s");
-        laserEnabled = true;
-        // set a timer for 15 seconds of elapsed time...
-        yield return new WaitForSeconds(15);
-        ResetShip();
+        // set a timer for 10 seconds of elapsed time...
+        yield return new WaitForSeconds(10);
+        // make the ship not be a shooty pewpew gunboat
+        animPlayer.SetBool("PlayerLaser", false);
+        laserEnabled = false;
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -200,15 +219,4 @@ public class Racket : MonoBehaviour
             col.gameObject.GetComponent<Ball>().ballActive = false;
         }
     }
-
-    public void ResetShip()
-    {
-        // turn the ship into a normal Vaus
-        Debug.Log("reverting to normal ship");
-        gameObject.GetComponent<SpriteRenderer>().sprite = normalShip;
-        gameObject.GetComponent<BoxCollider2D>().size = normalShip.bounds.size;
-        gameObject.GetComponent<BoxCollider2D>().offset = normalShip.bounds.center;
-        laserEnabled = false;
-    }
-
 }

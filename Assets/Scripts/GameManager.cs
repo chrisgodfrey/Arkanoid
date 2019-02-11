@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     public GameObject playerObject;
     public GameObject vausLife3;
     public GameObject vausLife2;
+    public Animator animPlayer;
+    private GameObject ball;
 
     // Start is called before the first frame update
     void Start()
@@ -40,9 +42,6 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("you lost a life!");
         lives = lives - 1;
-
-        // reset racket position
-        playerObject.GetComponent<Rigidbody2D>().MovePosition(new Vector2(84, 16));
 
         // Destroy all falling pickups
         GameObject[] pickups = GameObject.FindGameObjectsWithTag("Expand");
@@ -93,8 +92,8 @@ public class GameManager : MonoBehaviour
             Destroy(pickups[i]);
         }
 
-        // reset player ship to normal
-        playerObject.GetComponent<Racket>().ResetShip();
+        // reset player ship to normal 
+        // TODO
 
         Debug.Log("Player Lives = " + lives);
 
@@ -108,10 +107,32 @@ public class GameManager : MonoBehaviour
             {
                 vausLife2.SetActive(false);
             }
+            
+        // reset racket position
+        playerObject.GetComponent<Rigidbody2D>().MovePosition(new Vector2(84, 16));
+
+        // disable pickup effects
+        playerObject.GetComponent<Racket>().laserEnabled = false;
+        playerObject.GetComponent<Racket>().expandEnabled = false;
+        
+
         }
         else
         {
             Debug.Log("you lost all your lives!");
+
+        // blow up the ship
+        animPlayer = playerObject.GetComponent<Animator>();
+        animPlayer.SetBool ("PlayerDead", true);
+
+        // remove the ball
+        ball = GameObject.FindGameObjectWithTag("Ball");
+        Destroy(ball);
+
+        // display "game over press any key" message <- coroutine?
+
+        // go back to main menu
+
         }
     }
 }
