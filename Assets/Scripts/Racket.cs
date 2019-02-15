@@ -17,6 +17,7 @@ public class Racket : MonoBehaviour
     public GameObject pewPew;
     private Vector2 pewPosition;
     public float pewSpeed = 200;
+    public AudioClip soundLaser;
 
     // Disrupt
     public int disruptBalls = 2;
@@ -31,6 +32,7 @@ public class Racket : MonoBehaviour
 
     // Expand
     public bool expandEnabled = false;
+    public AudioClip soundExpand;
 
 
     void Start()
@@ -70,6 +72,8 @@ public class Racket : MonoBehaviour
         if (col.gameObject.tag == "Expand")
         {
             Debug.Log("Picked up Expand!");
+            // play 'expand' sound
+            GetComponent<AudioSource>().PlayOneShot(soundExpand, 1);
             if (laserEnabled == true)
             {
                 animPlayer.SetBool("PlayerLaser", false);
@@ -90,6 +94,8 @@ public class Racket : MonoBehaviour
         if (col.gameObject.tag == "Laser")
         {
             Debug.Log("Picked up Laser!");
+            // play 'laser' sound
+            GetComponent<AudioSource>().PlayOneShot(soundLaser, 1);
             // turn the ship into a shooty blast cannon!
             animPlayer.SetBool("PlayerLaser", true);
             laserEnabled = true;

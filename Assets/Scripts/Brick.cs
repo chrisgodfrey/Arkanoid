@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Brick : MonoBehaviour
 {
@@ -36,7 +37,7 @@ public class Brick : MonoBehaviour
             // and make the sound not play
             // cameraZpos is needed to get the sound to play close to the camera
             // otherwise its way too quiet and we can't hear it
-            AudioSource.PlayClipAtPoint(sound, new Vector3(103, 136, -5), 1f);
+            AudioSource.PlayClipAtPoint(sound, Camera.main.transform.position, 1f);
 
             // should this brick drop something?
             int x = Random.Range(0, 6); // 0-15 for normal play
@@ -71,8 +72,18 @@ public class Brick : MonoBehaviour
                 // Instantiate a "Break" pickup
                 Instantiate(pickupBreak, transform.position, transform.rotation);
             }
-            // destroy this brick
-            Destroy(gameObject);
+
+            // load next level if this is the last brick
+            if (GameObject.FindGameObjectsWithTag("Brick").Length == 1)
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            }
+            else
+            {
+                // destroy this brick
+                Destroy(gameObject);
+            }
+
         }
     }
 

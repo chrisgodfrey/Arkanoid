@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public GameObject vausLife2;
     public Animator animPlayer;
     private GameObject ball;
+    public AudioClip playerDead;
 
     // Start is called before the first frame update
     void Start()
@@ -124,6 +125,9 @@ public class GameManager : MonoBehaviour
         // blow up the ship
         animPlayer = playerObject.GetComponent<Animator>();
         animPlayer.SetBool ("PlayerDead", true);
+        // play 'hit vaus' sound
+        GetComponent<AudioSource>().PlayOneShot(playerDead, 1);
+
 
         // remove the ball
         ball = GameObject.FindGameObjectWithTag("Ball");
