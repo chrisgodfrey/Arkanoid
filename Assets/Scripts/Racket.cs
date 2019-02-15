@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Racket : MonoBehaviour
 {
@@ -192,6 +193,7 @@ public class Racket : MonoBehaviour
         {
             // Load the next level
             Debug.Log("Loading next level!");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
 
     }

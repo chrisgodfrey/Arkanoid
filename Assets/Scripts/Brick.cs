@@ -40,7 +40,7 @@ public class Brick : MonoBehaviour
             AudioSource.PlayClipAtPoint(sound, Camera.main.transform.position, 1f);
 
             // should this brick drop something?
-            int x = Random.Range(0, 6); // 0-15 for normal play
+            int x = Random.Range(0, 15); // 0-15 for normal play
 
             if (x == 0)
             {
@@ -69,8 +69,12 @@ public class Brick : MonoBehaviour
             }
             if (x == 5)
             {
-                // Instantiate a "Break" pickup
-                Instantiate(pickupBreak, transform.position, transform.rotation);
+                int y = Random.Range(0, 5);
+                if (y == 0)
+                {
+                    // Instantiate a "Break" pickup
+                    Instantiate(pickupBreak, transform.position, transform.rotation);
+                }
             }
 
             // load next level if this is the last brick
@@ -101,8 +105,17 @@ public class Brick : MonoBehaviour
             {
                 // increase the score
                 gameManager.GetComponent<GameManager>().UpdateScore(100);
-                // Destroy the brick
-                Destroy(gameObject);
+
+                // load next level if this is the last brick
+                if (GameObject.FindGameObjectsWithTag("Brick").Length == 1)
+                {
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                }
+                else
+                {
+                    // destroy this brick
+                    Destroy(gameObject);
+                }
             }
         }
     }
